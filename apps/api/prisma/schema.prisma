@@ -1,0 +1,744 @@
+// Carely data model — MySQL 8 / MariaDB 10.6+ (InnoDB, utf8mb4).
+// Portable: no scalar arrays, no JSONB operators, application-generated string IDs.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Locale {
+  hy
+  ru
+  en
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum ProfileStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  SUSPENDED
+}
+
+enum PriceUnit {
+  HOUR
+  DAY
+  WEEK
+  MONTH
+  VISIT
+}
+
+enum PriceKind {
+  FIXED
+  NEGOTIABLE
+}
+
+enum RequestStatus {
+  SUBMITTED
+  ACCEPTED
+  DECLINED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+enum ScheduleType {
+  ONE_TIME
+  RECURRING
+}
+
+enum QualificationKind {
+  IDENTITY
+  NURSING_LICENSE
+  MEDICAL_EDUCATION
+  FIRST_AID
+  PEDAGOGY
+  VETERINARY
+  OTHER
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum ReviewStatus {
+  PENDING
+  PUBLISHED
+  REJECTED
+}
+
+/// Global profile facets. Options are code-managed in packages/shared/src/taxonomy/filters.ts.
+enum AttributeGroup {
+  WORK_SCHEDULE
+  WORK_PLACE
+}
+
+enum EducationLevel {
+  SECONDARY
+  VOCATIONAL
+  BACHELOR
+  MASTER
+}
+
+enum LocationType {
+  REGION
+  CITY
+  DISTRICT
+}
+
+enum SupportTopic {
+  GENERAL
+  ACCOUNT
+  REQUEST_ISSUE
+  PROFESSIONAL
+  SAFETY
+  OTHER
+}
+
+enum SupportStatus {
+  OPEN
+  CLOSED
+}
+
+enum EventActor {
+  CUSTOMER
+  PROFESSIONAL
+  SYSTEM
+  ADMIN
+}
+
+enum OccurrenceStatus {
+  ACTIVE
+  CANCELLED
+}
+
+/// Admin-brokered care request ("lead") lifecycle.
+enum LeadStatus {
+  NEW
+  IN_PROGRESS
+  MATCHED
+  CLOSED
+  CANCELLED
+}
+
+enum LeadSource {
+  PROFILE
+  GENERAL
+}
+
+// ───────────────────────── Accounts ─────────────────────────
+
+model User {
+  id           String     @id @default(cuid()) @db.VarChar(30)
+  email        String     @unique @db.VarChar(191)
+  passwordHash String     @db.VarChar(255)
+  name         String     @db.VarChar(80)
+  phone        String?    @db.VarChar(20)
+  locale       Locale     @default(hy)
+  isAdmin      Boolean    @default(false)
+  status       UserStatus @default(ACTIVE)
+  suspendedAt  DateTime?
+  isDemo       Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  sessions         Session[]
+  resetTokens      PasswordResetToken[]
+  professional     ProfessionalProfile?
+  customerRequests CareRequest[]        @relation("CustomerRequests")
+  favorites        Favorite[]
+  reviews          Review[]
+  notifications    Notification[]
+  supportInquiries SupportInquiry[]
+  leads            CareLead[]           @relation("LeadCustomer")
+  handledLeads     CareLead[]           @relation("LeadHandler")
+  auditLogs        AuditLog[]
+  media            MediaAsset[]
+  documents        PrivateDocument[]
+  requestEvents    RequestEvent[]
+  requestNotes     RequestNote[]
+
+  @@index([status])
+}
+
+model Session {
+  id         String   @id @default(cuid()) @db.VarChar(30)
+  tokenHash  String   @unique @db.Char(64)
+  userId     String   @db.VarChar(30)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt  DateTime
+  lastSeenAt DateTime @default(now())
+  ip         String?  @db.VarChar(64)
+  userAgent  String?  @db.VarChar(255)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid()) @db.VarChar(30)
+  tokenHash String    @unique @db.Char(64)
+  userId    String    @db.VarChar(30)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// ───────────────────────── Taxonomy ─────────────────────────
+// Categories, services and facets mirror packages/shared/src/taxonomy (synced by `npm run db:seed`).
+// Never edit these rows by hand: the next sync overwrites names/order and deactivates unknown slugs.
+
+model Category {
+  id        String   @id @default(cuid()) @db.VarChar(30)
+  slug      String   @unique @db.VarChar(60)
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations CategoryTranslation[]
+  services     Service[]
+  profiles     ProfessionalProfile[]
+  leads        CareLead[]
+}
+
+model CategoryTranslation {
+  id          String   @id @default(cuid()) @db.VarChar(30)
+  categoryId  String   @db.VarChar(30)
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String   @db.VarChar(120)
+  description String   @default("") @db.VarChar(1000)
+
+  @@unique([categoryId, locale])
+}
+
+model Service {
+  id                    String             @id @default(cuid()) @db.VarChar(30)
+  slug                  String             @unique @db.VarChar(60)
+  categoryId            String             @db.VarChar(30)
+  category              Category           @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  requiredQualification QualificationKind?
+  sortOrder             Int                @default(0)
+  active                Boolean            @default(true)
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  translations ServiceTranslation[]
+  offerings    ProfessionalService[]
+  requests     CareRequest[]
+  leads        CareLead[]
+
+  @@index([categoryId, active])
+}
+
+model ServiceTranslation {
+  id          String  @id @default(cuid()) @db.VarChar(30)
+  serviceId   String  @db.VarChar(30)
+  service     Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String  @db.VarChar(120)
+  description String  @default("") @db.VarChar(1000)
+
+  @@unique([serviceId, locale])
+}
+
+/// Global facets shared by all categories: work schedule, work place.
+model CareAttribute {
+  id        String         @id @default(cuid()) @db.VarChar(30)
+  slug      String         @unique @db.VarChar(60)
+  group     AttributeGroup
+  sortOrder Int            @default(0)
+  active    Boolean        @default(true)
+
+  translations AttributeTranslation[]
+  profiles     ProfessionalAttribute[]
+
+  @@index([group])
+}
+
+model AttributeTranslation {
+  id          String        @id @default(cuid()) @db.VarChar(30)
+  attributeId String        @db.VarChar(30)
+  attribute   CareAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String        @db.VarChar(120)
+  description String        @default("") @db.VarChar(1000)
+
+  @@unique([attributeId, locale])
+}
+
+model Location {
+  id        String       @id @default(cuid()) @db.VarChar(30)
+  slug      String       @unique @db.VarChar(80)
+  type      LocationType
+  parentId  String?      @db.VarChar(30)
+  parent    Location?    @relation("LocationTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children  Location[]   @relation("LocationTree")
+  sortOrder Int          @default(0)
+  active    Boolean      @default(true)
+
+  translations   LocationTranslation[]
+  serviceAreas   ServiceArea[]
+  homeOfProfiles ProfessionalProfile[]
+  requests       CareRequest[]
+  leads          CareLead[]
+
+  @@index([parentId])
+}
+
+model LocationTranslation {
+  id          String   @id @default(cuid()) @db.VarChar(30)
+  locationId  String   @db.VarChar(30)
+  location    Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  locale      Locale
+  name        String   @db.VarChar(120)
+  description String   @default("") @db.VarChar(1000)
+
+  @@unique([locationId, locale])
+}
+
+// ───────────────────────── Professionals ─────────────────────────
+
+model ProfessionalProfile {
+  id                String          @id @default(cuid()) @db.VarChar(30)
+  userId            String          @unique @db.VarChar(30)
+  user              User            @relation(fields: [userId], references: [id], onDelete: Restrict)
+  slug              String          @unique @db.VarChar(120)
+  status            ProfileStatus   @default(DRAFT)
+  displayName       String          @default("") @db.VarChar(80)
+  originalLocale    Locale          @default(hy)
+  categoryId        String?         @db.VarChar(30)
+  category          Category?       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  homeLocationId    String?         @db.VarChar(30)
+  homeLocation      Location?       @relation(fields: [homeLocationId], references: [id], onDelete: Restrict)
+  experienceYears   Int             @default(0)
+  experienceSummary String          @default("") @db.VarChar(1000)
+  portraitMediaId   String?         @unique @db.VarChar(30)
+  portrait          MediaAsset?     @relation("Portrait", fields: [portraitMediaId], references: [id], onDelete: SetNull)
+  onboardingStep    Int             @default(0)
+  rejectionReason   String?         @db.VarChar(1000)
+  adminNote         String?         @db.Text
+  submittedAt       DateTime?
+  approvedAt        DateTime?
+  suspendedAt       DateTime?
+  /// Weighted mean of the last 50 published reviews (unrounded). Written only by reviews/rating.ts.
+  ratingValue       Float?
+  /// Reviews used in ratingValue (≤ 50).
+  ratingCount       Int             @default(0)
+  /// All published reviews.
+  totalReviewCount  Int             @default(0)
+  minHourlyPrice    Int?
+  /// Used for the age filter and shown publicly only as an approximate age.
+  birthYear         Int?            @db.SmallInt
+  educationLevel    EducationLevel?
+  /// Earliest start date; null = available now.
+  availableFrom     DateTime?       @db.Date
+  isDemo            Boolean         @default(false)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  translations   ProfessionalTranslation[]
+  languages      ProfessionalLanguage[]
+  offerings      ProfessionalService[]
+  attributes     ProfessionalAttribute[]
+  serviceAreas   ServiceArea[]
+  qualifications Qualification[]
+  rules          AvailabilityRule[]
+  exceptions     AvailabilityException[]
+  requests       CareRequest[]
+  occurrences    BookingOccurrence[]
+  favorites      Favorite[]
+  reviews        Review[]
+  requestedLeads CareLead[]                @relation("LeadRequested")
+  assignedLeads  CareLead[]                @relation("LeadAssigned")
+
+  @@index([status, categoryId])
+  @@index([status, experienceYears])
+  @@index([status, birthYear])
+}
+
+/// User-authored text. `locale = originalLocale` holds the original; other rows only if the author supplies them.
+model ProfessionalTranslation {
+  id        String              @id @default(cuid()) @db.VarChar(30)
+  profileId String              @db.VarChar(30)
+  profile   ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  locale    Locale
+  headline  String              @db.VarChar(120)
+  bio       String              @db.Text
+
+  @@unique([profileId, locale])
+}
+
+model ProfessionalLanguage {
+  profileId String              @db.VarChar(30)
+  profile   ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  code      String              @db.VarChar(5)
+
+  @@id([profileId, code])
+  @@index([code])
+}
+
+model ProfessionalService {
+  id          String              @id @default(cuid()) @db.VarChar(30)
+  profileId   String              @db.VarChar(30)
+  profile     ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  serviceId   String              @db.VarChar(30)
+  service     Service             @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  priceKind   PriceKind           @default(FIXED)
+  priceAmount Int?
+  priceUnit   PriceUnit
+  createdAt   DateTime            @default(now())
+
+  @@unique([profileId, serviceId])
+  @@index([serviceId, priceUnit, priceAmount])
+}
+
+model ProfessionalAttribute {
+  profileId   String              @db.VarChar(30)
+  profile     ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  attributeId String              @db.VarChar(30)
+  attribute   CareAttribute       @relation(fields: [attributeId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, attributeId])
+  @@index([attributeId])
+}
+
+model ServiceArea {
+  profileId  String              @db.VarChar(30)
+  profile    ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  locationId String              @db.VarChar(30)
+  location   Location            @relation(fields: [locationId], references: [id], onDelete: Restrict)
+
+  @@id([profileId, locationId])
+  @@index([locationId])
+}
+
+model Qualification {
+  id              String              @id @default(cuid()) @db.VarChar(30)
+  profileId       String              @db.VarChar(30)
+  profile         ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  kind            QualificationKind
+  title           String              @db.VarChar(160)
+  issuer          String              @default("") @db.VarChar(160)
+  issuedYear      Int?
+  status          VerificationStatus  @default(PENDING)
+  internalNote    String?             @db.Text
+  rejectionReason String?             @db.VarChar(1000)
+  verifiedAt      DateTime?
+  verifiedById    String?             @db.VarChar(30)
+  reviewedAt      DateTime?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  documents PrivateDocument[]
+
+  @@index([profileId, status])
+  @@index([kind, status])
+}
+
+/// Private verification evidence. Never served publicly.
+model PrivateDocument {
+  id              String         @id @default(cuid()) @db.VarChar(30)
+  ownerId         String         @db.VarChar(30)
+  owner           User           @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  qualificationId String?        @db.VarChar(30)
+  qualification   Qualification? @relation(fields: [qualificationId], references: [id], onDelete: SetNull)
+  storageKey      String         @unique @db.VarChar(191)
+  originalName    String         @db.VarChar(191)
+  mimeType        String         @db.VarChar(100)
+  size            Int
+  createdAt       DateTime       @default(now())
+
+  @@index([ownerId])
+}
+
+/// Public media (portraits). Stored resized.
+model MediaAsset {
+  id         String               @id @default(cuid()) @db.VarChar(30)
+  ownerId    String               @db.VarChar(30)
+  owner      User                 @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  storageKey String               @unique @db.VarChar(191)
+  mimeType   String               @db.VarChar(100)
+  width      Int
+  height     Int
+  size       Int
+  createdAt  DateTime             @default(now())
+  profile    ProfessionalProfile? @relation("Portrait")
+
+  @@index([ownerId])
+}
+
+/// Weekly availability in local time (Asia/Yerevan). weekday: ISO 1=Mon … 7=Sun. Minutes after midnight, half-open.
+model AvailabilityRule {
+  id          String              @id @default(cuid()) @db.VarChar(30)
+  profileId   String              @db.VarChar(30)
+  profile     ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  weekday     Int                 @db.TinyInt
+  startMinute Int                 @db.SmallInt
+  endMinute   Int                 @db.SmallInt
+
+  @@index([profileId, weekday])
+}
+
+/// Dated exception. available=false blocks the (whole or partial) day; available=true adds hours.
+model AvailabilityException {
+  id          String              @id @default(cuid()) @db.VarChar(30)
+  profileId   String              @db.VarChar(30)
+  profile     ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  date        DateTime            @db.Date
+  available   Boolean             @default(false)
+  startMinute Int?                @db.SmallInt
+  endMinute   Int?                @db.SmallInt
+  note        String              @default("") @db.VarChar(200)
+  createdAt   DateTime            @default(now())
+
+  @@index([profileId, date])
+}
+
+// ───────────────────────── Requests ─────────────────────────
+
+model CareRequest {
+  id             String              @id @default(cuid()) @db.VarChar(30)
+  customerId     String              @db.VarChar(30)
+  customer       User                @relation("CustomerRequests", fields: [customerId], references: [id], onDelete: Restrict)
+  professionalId String              @db.VarChar(30)
+  professional   ProfessionalProfile @relation(fields: [professionalId], references: [id], onDelete: Restrict)
+  serviceId      String              @db.VarChar(30)
+  service        Service             @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  locationId     String              @db.VarChar(30)
+  location       Location            @relation(fields: [locationId], references: [id], onDelete: Restrict)
+  status         RequestStatus       @default(SUBMITTED)
+  scheduleType   ScheduleType
+  /// First occurrence start / last occurrence end (UTC).
+  startAt        DateTime
+  endAt          DateTime
+  /// Recurring definition (local time). Weekdays as ISO bitmask: bit (d-1) for d in 1..7.
+  weekdayMask    Int?                @db.TinyInt
+  startDate      String?             @db.Char(10)
+  endDate        String?             @db.Char(10)
+  startMinute    Int                 @db.SmallInt
+  endMinute      Int                 @db.SmallInt
+  addressNote    String              @default("") @db.VarChar(300)
+  requirements   String              @default("") @db.Text
+  priceKind      PriceKind?
+  priceAmount    Int?
+  priceUnit      PriceUnit?
+  acceptedAt     DateTime?
+  expiresAt      DateTime?
+  confirmedAt    DateTime?
+  completedAt    DateTime?
+  cancelledAt    DateTime?
+  cancelReason   String?             @db.VarChar(500)
+  declineReason  String?             @db.VarChar(500)
+  isDemo         Boolean             @default(false)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  events      RequestEvent[]
+  notes       RequestNote[]
+  occurrences BookingOccurrence[]
+  review      Review?
+
+  @@index([customerId, status])
+  @@index([professionalId, status])
+  @@index([status, expiresAt])
+  @@index([professionalId, startAt, endAt])
+}
+
+/// Finite reserved time slots, created only on confirmation. Overlap checks run against ACTIVE rows.
+model BookingOccurrence {
+  id             String              @id @default(cuid()) @db.VarChar(30)
+  requestId      String              @db.VarChar(30)
+  request        CareRequest         @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  professionalId String              @db.VarChar(30)
+  professional   ProfessionalProfile @relation(fields: [professionalId], references: [id], onDelete: Restrict)
+  startAt        DateTime
+  endAt          DateTime
+  status         OccurrenceStatus    @default(ACTIVE)
+
+  @@index([professionalId, status, startAt, endAt])
+  @@index([requestId])
+}
+
+model RequestEvent {
+  id         String         @id @default(cuid()) @db.VarChar(30)
+  requestId  String         @db.VarChar(30)
+  request    CareRequest    @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actorId    String?        @db.VarChar(30)
+  actor      User?          @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  actorRole  EventActor
+  type       String         @db.VarChar(40)
+  fromStatus RequestStatus?
+  toStatus   RequestStatus?
+  note       String?        @db.VarChar(500)
+  createdAt  DateTime       @default(now())
+
+  @@index([requestId, createdAt])
+}
+
+model RequestNote {
+  id        String      @id @default(cuid()) @db.VarChar(30)
+  requestId String      @db.VarChar(30)
+  request   CareRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  authorId  String      @db.VarChar(30)
+  author    User        @relation(fields: [authorId], references: [id], onDelete: Restrict)
+  body      String      @db.Text
+  createdAt DateTime    @default(now())
+
+  @@index([requestId, createdAt])
+}
+
+model Favorite {
+  userId    String              @db.VarChar(30)
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  profileId String              @db.VarChar(30)
+  profile   ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  createdAt DateTime            @default(now())
+
+  @@id([userId, profileId])
+  @@index([profileId])
+}
+
+model Review {
+  id             String              @id @default(cuid()) @db.VarChar(30)
+  requestId      String              @unique @db.VarChar(30)
+  request        CareRequest         @relation(fields: [requestId], references: [id], onDelete: Restrict)
+  customerId     String              @db.VarChar(30)
+  customer       User                @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  profileId      String              @db.VarChar(30)
+  profile        ProfessionalProfile @relation(fields: [profileId], references: [id], onDelete: Restrict)
+  rating         Int                 @db.TinyInt
+  body           String              @db.Text
+  locale         Locale
+  /// Admin-only follow-up phone. Never exposed in public DTOs. Nullable for legacy/demo rows; required by createReviewSchema.
+  contactPhone   String?             @db.VarChar(20)
+  status         ReviewStatus        @default(PENDING)
+  moderatedAt    DateTime?
+  moderatedBy    String?             @db.VarChar(30)
+  moderationNote String?             @db.VarChar(1000)
+  isDemo         Boolean             @default(false)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  @@index([profileId, status, createdAt])
+  @@index([status, createdAt])
+}
+
+model Notification {
+  id        String    @id @default(cuid()) @db.VarChar(30)
+  userId    String    @db.VarChar(30)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String    @db.VarChar(40)
+  /// Translation parameters (portable JSON column; never queried by operators).
+  params    Json
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, readAt, createdAt])
+}
+
+model SupportInquiry {
+  id        String        @id @default(cuid()) @db.VarChar(30)
+  userId    String?       @db.VarChar(30)
+  user      User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name      String        @db.VarChar(80)
+  email     String        @db.VarChar(191)
+  topic     SupportTopic
+  message   String        @db.Text
+  requestId String?       @db.VarChar(30)
+  locale    Locale        @default(hy)
+  status    SupportStatus @default(OPEN)
+  adminNote String?       @db.Text
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status, createdAt])
+}
+
+/**
+ * A care request handled by the Carely team: the client describes what they need (optionally from a professional's
+ * profile), the team calls them, finds a professional and introduces both sides. Professionals never see leads.
+ * Contact details are admin-only and never part of a public DTO.
+ */
+model CareLead {
+  id                      String               @id @default(cuid()) @db.VarChar(30)
+  status                  LeadStatus           @default(NEW)
+  source                  LeadSource
+  name                    String               @db.VarChar(80)
+  /// Normalized +374XXXXXXXX.
+  phone                   String               @db.VarChar(20)
+  userId                  String?              @db.VarChar(30)
+  user                    User?                @relation("LeadCustomer", fields: [userId], references: [id], onDelete: SetNull)
+  /// The profile the client asked from (kept for history even if the team assigns someone else).
+  requestedProfessionalId String?              @db.VarChar(30)
+  requestedProfessional   ProfessionalProfile? @relation("LeadRequested", fields: [requestedProfessionalId], references: [id], onDelete: SetNull)
+  /// The professional the team is introducing.
+  professionalId          String?              @db.VarChar(30)
+  professional            ProfessionalProfile? @relation("LeadAssigned", fields: [professionalId], references: [id], onDelete: SetNull)
+  categoryId              String?              @db.VarChar(30)
+  category                Category?            @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  serviceId               String?              @db.VarChar(30)
+  service                 Service?             @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  locationId              String?              @db.VarChar(30)
+  location                Location?            @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  /// Requested period (either end optional).
+  startDate               DateTime?            @db.Date
+  endDate                 DateTime?            @db.Date
+  /// Days and hours, in the client's words.
+  schedule                String               @default("") @db.VarChar(300)
+  message                 String               @default("") @db.Text
+  locale                  Locale               @default(hy)
+  adminNote               String?              @db.Text
+  handledById             String?              @db.VarChar(30)
+  handledBy               User?                @relation("LeadHandler", fields: [handledById], references: [id], onDelete: SetNull)
+  closedAt                DateTime?
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+
+  @@index([status, createdAt])
+  @@index([professionalId])
+  @@index([requestedProfessionalId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid()) @db.VarChar(30)
+  actorId    String?  @db.VarChar(30)
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action     String   @db.VarChar(60)
+  entityType String   @db.VarChar(40)
+  entityId   String   @db.VarChar(40)
+  meta       Json?
+  ip         String?  @db.VarChar(64)
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@index([createdAt])
+}
+
+/// Local development mail inbox (MAIL_DRIVER=database). Not used in production.
+model DevMail {
+  id        String   @id @default(cuid()) @db.VarChar(30)
+  to        String   @db.VarChar(191)
+  subject   String   @db.VarChar(255)
+  text      String   @db.Text
+  createdAt DateTime @default(now())
+}

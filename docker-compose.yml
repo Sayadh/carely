@@ -1,0 +1,15 @@
+# OPTIONAL local database only. Not used in production (shared hosting has no Docker).
+# Matches the expected host engine family; adjust the tag once the host's exact MySQL/MariaDB version is confirmed.
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: root_dev_only
+      MARIADB_DATABASE: carely
+      MARIADB_USER: carely
+      MARIADB_PASSWORD: carely_dev
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports: ['3306:3306']
+    volumes: ['carely_db:/var/lib/mysql']
+volumes:
+  carely_db:

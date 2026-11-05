@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/noto-sans/wght.css';
+@import '@fontsource-variable/noto-sans-armenian/wght.css';
+
+/* Carely design tokens */
+@theme {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-ink: #182230;
+  --color-muted: #667085;
+  --color-subtle: #98a2b3;
+  --color-line: #e4e7ec;
+  --color-line-strong: #d0d5dd;
+  --color-primary: #176b61;
+  --color-primary-hover: #12594f;
+  --color-primary-active: #0e4a42;
+  --color-primary-soft: #eaf3ee;
+  --color-primary-ring: #8cc7bb;
+  --color-peach: #f2ba9f;
+  --color-peach-soft: #fdf1eb;
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
+  --color-warning: #93370d;
+  --color-warning-soft: #fffaeb;
+  --color-success: #067647;
+  --color-success-soft: #ecfdf3;
+  --color-info: #175cd3;
+  --color-info-soft: #eff8ff;
+
+  /* Latin/Cyrillic from Noto Sans, Armenian from Noto Sans Armenian — same design family, matched metrics. */
+  --font-sans: 'Noto Sans Variable', 'Noto Sans Armenian Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-panel: 16px;
+
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
+  --shadow-pop: 0 12px 32px -8px rgb(16 24 40 / 0.18);
+}
+
+@layer base {
+  html {
+    color: var(--color-ink);
+    background: var(--color-bg);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 650;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-primary-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-primary-soft);
+  }
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 24px;
+    }
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+  .field-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 560;
+    margin-bottom: 6px;
+    color: var(--color-ink);
+  }
+  .field-help {
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    margin-top: 6px;
+  }
+  .field-error {
+    font-size: 0.8125rem;
+    color: var(--color-danger);
+    margin-top: 6px;
+  }
+  .control {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    padding: 10px 12px;
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+  }
+  .control::placeholder {
+    color: var(--color-subtle);
+  }
+  .control:hover {
+    border-color: #98a2b3;
+  }
+  .control:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgb(23 107 97 / 0.16);
+  }
+  .control[aria-invalid='true'] {
+    border-color: var(--color-danger);
+  }
+  .control:disabled {
+    background: #f2f4f7;
+    color: var(--color-muted);
+    cursor: not-allowed;
+  }
+  .prose-care p + p {
+    margin-top: 0.75em;
+  }
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

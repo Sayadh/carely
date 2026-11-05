@@ -1,0 +1,1082 @@
+{
+  "meta": {
+    "tagline": "Care professionals in Armenia"
+  },
+  "common": {
+    "add": "Add",
+    "all": "All",
+    "back": "Back",
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "close": "Close",
+    "continue": "Continue",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading…",
+    "nextPage": "Next page",
+    "noMatches": "No matches",
+    "pagination": "Pagination",
+    "prevPage": "Previous page",
+    "retry": "Try again",
+    "save": "Save",
+    "saveContinue": "Save and continue",
+    "search": "Search",
+    "today": "today",
+    "viewAll": "View all"
+  },
+  "nav": {
+    "about": "About",
+    "admin": "Administration",
+    "becomePro": "Become a professional",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "home": "Home",
+    "howItWorks": "How it works",
+    "language": "Language",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "main": "Main navigation",
+    "menu": "Menu",
+    "myAccount": "My account",
+    "notifications": "Notifications",
+    "openMenu": "Open menu",
+    "privacy": "Privacy policy",
+    "proDashboard": "Professional dashboard",
+    "professionals": "Professionals",
+    "skipToContent": "Skip to content",
+    "terms": "Terms of use",
+    "verification": "Verification and trust"
+  },
+  "demo": {
+    "banner": "This is a demo environment: profiles, requests and reviews are fictitious and for testing only.",
+    "label": "Demo",
+    "profileNotice": "This is a demo profile with fictitious data. It is not a real professional."
+  },
+  "footer": {
+    "about": "Carely helps families find independent care professionals in Yerevan and across Armenia's provinces.",
+    "company": "Carely",
+    "help": "Help",
+    "services": "Services",
+    "disclaimer": "Carely is a platform; professionals work independently."
+  },
+  "home": {
+    "metaTitle": "Find a care professional in Armenia",
+    "metaDescription": "Nannies, elderly and patient care, pet care in Yerevan and the provinces. Verified details and clear prices.",
+    "heroTitle": "Find your care professional",
+    "heroText": "Care for the people you love.",
+    "heroImageAlt": "A care professional with the person they care for",
+    "heroArtAlt": "A bright room with two cups and a green plant on the table",
+    "categoriesLabel": "Types of care",
+    "featuredTitle": "Professionals on Carely",
+    "featuredText": "Real published profiles, with verified details marked.",
+    "seeAll": "See all professionals",
+    "howTitle": "How it works",
+    "stepN": "Step {n}",
+    "steps": {
+      "1": {
+        "title": "Choose a professional",
+        "text": "Search by service and location; compare experience, prices and verified details."
+      },
+      "2": {
+        "title": "Send a request",
+        "text": "Add the date, time and the details that matter. The professional accepts or declines."
+      },
+      "3": {
+        "title": "Confirm the arrangement",
+        "text": "Once accepted, you confirm — and both sides receive each other's contact details."
+      }
+    },
+    "howNote": "In this first version there is no online payment: you agree the terms directly with the professional.",
+    "trustTitle": "What we check",
+    "trustText": "We only label what was actually checked. Every label has a specific meaning and a date.",
+    "trustMore": "More about verification",
+    "trust": {
+      "identity": "The professional submitted an identity document that was compared with their profile details.",
+      "qualTitle": "Qualifications",
+      "qual": "Diplomas, licences and certificates — such as a nursing qualification — are checked one by one.",
+      "limitsTitle": "What we don't guarantee",
+      "limits": "Verification does not replace your own conversation with the professional and is not a safety guarantee."
+    },
+    "proTitle": "Are you a care professional?",
+    "proText": "Create a profile with your services, prices and schedule. It is published after review.",
+    "allQuestions": "All questions",
+    "chooseService": "Choose a service",
+    "locationLabel": "Location",
+    "demoPhoto": "Demo photo"
+  },
+  "search": {
+    "service": "Service",
+    "location": "Location",
+    "anyService": "All services",
+    "anyLocation": "All of Armenia",
+    "submit": "Find a professional",
+    "allProfessionals": "All professionals",
+    "headingIn": "{what} in {where}",
+    "resultCount": "{n} professional found | {n} professionals found",
+    "metaDescription": "{what} on Carely. Compare experience, prices and verified details.",
+    "sortBy": "Sort by",
+    "sort": {
+      "relevance": "Relevance",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low",
+      "experience": "Experience"
+    },
+    "priceSortNote": "Prices are compared only within the same unit: {unit}. Professionals priced in other units are listed last.",
+    "errorTitle": "Couldn't load results",
+    "errorText": "Check your connection and try again.",
+    "emptyTitle": "No professionals match these filters",
+    "emptyText": "Try a different location or loosen the filters.",
+    "nearbyTitle": "Nearby places",
+    "nearbyText": "These places have professionals matching the same filters. These are suggestions, not your search results.",
+    "relaxTitle": "If you remove one filter",
+    "relax": {
+      "date": "Any date",
+      "price": "No price limit",
+      "experience": "Any experience",
+      "languages": "Any language",
+      "attributes": "No extra requirements",
+      "verified": "No verification requirement",
+      "service": "All services in category"
+    },
+    "capped": "Showing the first 1,000 results. Refine your search."
+  },
+  "filters": {
+    "title": "Filters",
+    "reset": "Clear filters",
+    "apply": "Show results",
+    "category": "Category",
+    "allCategories": "All categories",
+    "service": "Service",
+    "anyService": "Any",
+    "location": "Service area",
+    "locationHelp": "Shows professionals who serve this place.",
+    "date": "Date",
+    "dateHelp": "Based on the weekly schedule, exceptions and already confirmed bookings.",
+    "price": "Price",
+    "priceUnit": "Price unit",
+    "priceMin": "Min",
+    "priceMax": "Max",
+    "priceHelp": "In AMD, for the selected unit.",
+    "experience": "Experience",
+    "anyExperience": "Any experience",
+    "experienceMin": "{n}+ year | {n}+ years",
+    "verified": "Verified details",
+    "languages": "Languages"
+  },
+  "card": {
+    "experience": "{n} year of experience | {n} years of experience",
+    "from": "Price",
+    "viewProfile": "View profile",
+    "everyDay": "Every day",
+    "moreAreas": "and {n} more",
+    "reviews": "{n} review | {n} reviews",
+    "serviceArea": "Service area",
+    "languages": "Languages",
+    "usualDays": "Usual days"
+  },
+  "price": {
+    "negotiable": "Negotiable",
+    "onRequest": "On request",
+    "perUnit": "{amount} / {unit}"
+  },
+  "priceUnit": {
+    "HOUR": "hour",
+    "DAY": "day",
+    "SHIFT": "shift",
+    "VISIT": "visit"
+  },
+  "priceUnitLong": {
+    "HOUR": "per hour",
+    "DAY": "per day",
+    "SHIFT": "per shift",
+    "VISIT": "per visit"
+  },
+  "lang": {
+    "hy": "Armenian",
+    "ru": "Russian",
+    "en": "English",
+    "fr": "French",
+    "de": "German",
+    "es": "Spanish",
+    "it": "Italian",
+    "fa": "Persian",
+    "ar": "Arabic",
+    "el": "Greek",
+    "ka": "Georgian"
+  },
+  "attributeGroup": {
+    "AGE_GROUP": "Children's ages",
+    "CARE_FORMAT": "Care format",
+    "TASK": "Tasks",
+    "SETTING": "Setting",
+    "ANIMAL_TYPE": "Animals",
+    "ANIMAL_SIZE": "Animal size"
+  },
+  "verification": {
+    "listLabel": "Verified details",
+    "kind": {
+      "IDENTITY": "Identity verified",
+      "NURSING_LICENSE": "Nursing qualification",
+      "MEDICAL_EDUCATION": "Medical education",
+      "FIRST_AID": "First-aid certificate",
+      "PEDAGOGY": "Teaching qualification",
+      "VETERINARY": "Veterinary qualification",
+      "OTHER": "Other qualification"
+    }
+  },
+  "verificationStatus": {
+    "PENDING": "Awaiting review",
+    "VERIFIED": "Verified",
+    "REJECTED": "Rejected"
+  },
+  "profileStatus": {
+    "DRAFT": "Draft",
+    "PENDING": "In review",
+    "APPROVED": "Published",
+    "REJECTED": "Rejected",
+    "SUSPENDED": "Suspended"
+  },
+  "reviewStatus": {
+    "PENDING": "Pending",
+    "PUBLISHED": "Published",
+    "REJECTED": "Rejected"
+  },
+  "userStatus": {
+    "ACTIVE": "Active",
+    "SUSPENDED": "Suspended"
+  },
+  "supportStatus": {
+    "OPEN": "Open",
+    "CLOSED": "Closed"
+  },
+  "supportTopic": {
+    "GENERAL": "General question",
+    "ACCOUNT": "Account",
+    "REQUEST_ISSUE": "Problem with a request",
+    "PROFESSIONAL": "For professionals",
+    "SAFETY": "Safety",
+    "OTHER": "Other"
+  },
+  "locationType": {
+    "REGION": "Province",
+    "CITY": "Town",
+    "DISTRICT": "District"
+  },
+  "requestStatus": {
+    "SUBMITTED": "Submitted",
+    "ACCEPTED": "Accepted",
+    "DECLINED": "Declined",
+    "CONFIRMED": "Confirmed",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled",
+    "EXPIRED": "Expired"
+  },
+  "requestEvent": {
+    "CREATED": "Request sent",
+    "ACCEPTED": "Professional accepted",
+    "DECLINED": "Professional declined",
+    "CONFIRMED": "Customer confirmed",
+    "COMPLETED": "Service completed",
+    "CANCELLED": "Request cancelled",
+    "EXPIRED": "Request expired"
+  },
+  "eventActor": {
+    "CUSTOMER": "Customer",
+    "PROFESSIONAL": "Professional",
+    "SYSTEM": "System",
+    "ADMIN": "Support team"
+  },
+  "profile": {
+    "breadcrumbs": "Breadcrumb",
+    "verification": "Verified details",
+    "verifiedOn": "verified {date}",
+    "noVerifications": "This professional's details have not been verified yet. The profile was approved by moderation.",
+    "verificationNote": "Verification is not a safety guarantee.",
+    "learnMore": "What we check",
+    "about": "About",
+    "originalLanguage": "Shown in the original language: {lang}",
+    "servicesPrices": "Services and prices",
+    "priceNote": "Prices are set by the professional. Final terms are agreed directly.",
+    "serviceArea": "Service areas",
+    "schedule": "Weekly schedule",
+    "notScheduled": "Not working",
+    "exceptions": "Upcoming changes",
+    "extraHours": "Extra hours",
+    "unavailable": "Unavailable",
+    "scheduleNote": "The schedule shows usual working hours. Availability on a specific day is confirmed after you send a request.",
+    "reviews": "Reviews",
+    "ratingOf": "{n} out of 5 stars"
+  },
+  "request": {
+    "title": "Request this professional",
+    "open": "Send a request",
+    "service": "Service",
+    "scheduleType": "How often",
+    "type": {
+      "ONE_TIME": "One time",
+      "RECURRING": "Recurring"
+    },
+    "date": "Date",
+    "startDate": "From",
+    "endDate": "Until",
+    "weekdays": "Days of the week",
+    "recurringHelp": "A recurring request can cover at most {weeks} weeks.",
+    "startTime": "Start",
+    "endTime": "End",
+    "overnight": "Ends the next day (overnight care).",
+    "location": "Location",
+    "locationPlaceholder": "Choose from the professional's service areas",
+    "addressNote": "Neighbourhood or street (optional)",
+    "addressHelp": "You can share the exact address after confirmation.",
+    "requirements": "Practical details",
+    "requirementsHelp": "For example: children's ages, type of pet, help needed. Don't include medical history or personal identifiers.",
+    "notice": "The professional must respond to your request. Sending a request does not guarantee availability. After they accept, you confirm the arrangement.",
+    "submit": "Send request",
+    "signInToSubmit": "Sign in to send",
+    "fixErrors": "Please check the highlighted fields.",
+    "sent": "Request sent. We'll let you know when the professional responds.",
+    "expires": "Confirm {when}",
+    "filterByStatus": "Filter by status",
+    "emptyTitle": "No requests yet",
+    "emptyCustomer": "Find a professional and send your first request.",
+    "emptyPro": "New requests will appear here.",
+    "detailTitle": "Request details",
+    "backToList": "Back to requests",
+    "withPro": "Professional",
+    "fromCustomer": "Customer",
+    "when": "When",
+    "occurrences": "{n} visit | {n} visits",
+    "priceAtRequest": "Price at time of request",
+    "confirmBy": "Confirm by",
+    "declineReason": "Reason for declining",
+    "cancelReason": "Reason for cancelling",
+    "contacts": "Contact details",
+    "contactsNote": "Contact details are revealed only after confirmation and only to the participants.",
+    "phoneUnverified": "Phone numbers were provided by users and have not been verified by the platform.",
+    "role": {
+      "customer": "Customer",
+      "professional": "Professional"
+    },
+    "reservedSlots": "Reserved times",
+    "requestedSlots": "Requested times",
+    "notes": "Notes",
+    "notesHelp": "Short practical messages. Visible only to the participants and the support team.",
+    "you": "You",
+    "addNote": "New note",
+    "sendNote": "Send",
+    "actions": "Actions",
+    "action": {
+      "accept": "Accept request",
+      "decline": "Decline",
+      "confirm": "Confirm arrangement",
+      "complete": "Mark as completed",
+      "cancel": "Cancel request"
+    },
+    "actionHint": {
+      "CUSTOMER": {
+        "SUBMITTED": "Waiting for the professional to respond.",
+        "ACCEPTED": "The professional accepted. Confirm to reserve the time.",
+        "CONFIRMED": "The arrangement is confirmed.",
+        "COMPLETED": "The service is completed.",
+        "DECLINED": "",
+        "CANCELLED": "",
+        "EXPIRED": ""
+      },
+      "PROFESSIONAL": {
+        "SUBMITTED": "Accept or decline. Accepting does not reserve the time yet.",
+        "ACCEPTED": "Waiting for the customer to confirm.",
+        "CONFIRMED": "Mark as completed after the service ends.",
+        "COMPLETED": "The service is completed.",
+        "DECLINED": "",
+        "CANCELLED": "",
+        "EXPIRED": ""
+      }
+    },
+    "done": {
+      "accept": "Request accepted",
+      "decline": "Request declined",
+      "confirm": "Arrangement confirmed",
+      "complete": "Marked as completed",
+      "cancel": "Request cancelled"
+    },
+    "completeConfirm": "Confirm that the service has been provided?",
+    "completeLater": "You can mark this as completed once the service has ended.",
+    "history": "History",
+    "reportIssue": "Something wrong?",
+    "reportIssueText": "Contact support — this request will be attached to your message.",
+    "contactSupport": "Contact support",
+    "declineTitle": "Decline request",
+    "declineReasonLabel": "Reason (optional)",
+    "cancelTitle": "Cancel request",
+    "cancelReasonLabel": "Reason for cancelling"
+  },
+  "review": {
+    "title": "Leave a review",
+    "moderationNote": "Your review will be published after moderation.",
+    "rating": "Rating",
+    "body": "Your review",
+    "submit": "Submit review",
+    "sent": "Thank you — your review was sent for moderation.",
+    "tooShort": "Please write at least 10 characters."
+  },
+  "favorites": {
+    "add": "Save {name} to favourites",
+    "remove": "Remove {name} from favourites",
+    "emptyTitle": "No favourites yet",
+    "emptyText": "Save professionals you like to compare them later."
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "loginSubtitle": "Welcome back to Carely.",
+    "registerTitle": "Create an account",
+    "registerSubtitle": "An account lets you send requests and save professionals.",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full name",
+    "phone": "Phone",
+    "phoneHelp": "Armenian number. Phone numbers are not verified and are shown only to the other side of a confirmed request.",
+    "passwordHelp": "At least 10 characters.",
+    "newPassword": "New password",
+    "acceptTerms": "I accept the {terms} and the {privacy}",
+    "loginSubmit": "Sign in",
+    "registerSubmit": "Create account",
+    "forgot": "Forgot your password?",
+    "noAccount": "No account yet?",
+    "registerLink": "Sign up",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Sign in",
+    "requestReason": "Sign in to send your request. What you entered has been kept.",
+    "forgotTitle": "Reset your password",
+    "forgotText": "Enter your email and we'll send you a reset link.",
+    "forgotSubmit": "Send link",
+    "forgotSent": "If an account exists for this address, we've sent a reset link. The link is valid for a limited time.",
+    "backToLogin": "Back to sign in",
+    "resetTitle": "New password",
+    "resetSubmit": "Save password",
+    "resetDone": "Your password has been changed. Sign in with the new password."
+  },
+  "account": {
+    "title": "My account",
+    "greeting": "Hello, {name}",
+    "subtitle": "Your requests and next steps.",
+    "nav": {
+      "overview": "Overview",
+      "requests": "My requests",
+      "favorites": "Favourites",
+      "notifications": "Notifications",
+      "settings": "Settings"
+    },
+    "needsConfirmation": "Waiting for your confirmation",
+    "confirmHint": "Accepted requests must be confirmed within the time limit, otherwise they expire.",
+    "upcoming": "Confirmed",
+    "waiting": "Waiting for the professional",
+    "leaveReview": "Leave a review",
+    "nothingActionable": "Nothing needs your attention right now",
+    "nothingText": "Find a professional or look through your past requests.",
+    "allRequests": "All requests",
+    "becomeProTitle": "Are you a care professional?",
+    "becomeProText": "You can also create a professional profile with the same account.",
+    "requestsSubtitle": "All the requests you've sent."
+  },
+  "notificationsPage": {
+    "empty": "No notifications",
+    "markAll": "Mark all as read",
+    "unread": "Unread"
+  },
+  "notifications": {
+    "REQUEST_SUBMITTED": "New request from {name}",
+    "REQUEST_ACCEPTED": "The professional accepted your request. Confirm by {expiresAt}.",
+    "REQUEST_DECLINED": "The professional declined your request.",
+    "REQUEST_CONFIRMED": "{name} confirmed the request. Contact details are now available.",
+    "REQUEST_COMPLETED": "The service was marked as completed. You can leave a review.",
+    "REQUEST_CANCELLED": "The request was cancelled ({by}).",
+    "REQUEST_EXPIRED": "The request expired.",
+    "REQUEST_NOTE": "New note on a request.",
+    "PROFILE_SUBMITTED": "Your profile was sent for review.",
+    "PROFILE_APPROVED": "Your profile was approved and published.",
+    "PROFILE_REJECTED": "Your profile was not approved: {reason}",
+    "PROFILE_SUSPENDED": "Your profile was suspended: {reason}",
+    "QUALIFICATION_VERIFIED": "Verified: {title}",
+    "QUALIFICATION_REJECTED": "Not verified: {title}. {reason}",
+    "REVIEW_PUBLISHED": "Your review was published.",
+    "REVIEW_REJECTED": "Your review did not pass moderation."
+  },
+  "settings": {
+    "profile": "Personal details",
+    "emailHelp": "To change your email, contact support.",
+    "language": "Language for emails and notifications",
+    "languageHelp": "You can change the site language with the selector at the top.",
+    "password": "Password",
+    "currentPassword": "Current password",
+    "changePassword": "Change password",
+    "saved": "Saved",
+    "passwordChanged": "Password changed. You've been signed out on other devices."
+  },
+  "schedule": {
+    "unavailable": "Unavailable",
+    "from": "From",
+    "to": "To",
+    "addSlot": "Add hours",
+    "removeSlot": "Remove",
+    "help": "Times are in Yerevan time.",
+    "copyMonday": "Copy Monday to weekdays"
+  },
+  "availability": {
+    "subtitle": "Weekly schedule and date-specific exceptions.",
+    "weekly": "Weekly schedule",
+    "weeklyHelp": "Customers see this schedule. It is not a booking: confirmed requests are taken into account separately.",
+    "exceptions": "Exceptions",
+    "exceptionsHelp": "Mark days off or extra working days.",
+    "date": "Date",
+    "kind": "Type",
+    "allDay": "All day",
+    "note": "Private note",
+    "noteHelp": "Only visible to you.",
+    "addException": "Add exception"
+  },
+  "pro": {
+    "nav": {
+      "overview": "Overview",
+      "requests": "Requests",
+      "schedule": "My bookings",
+      "availability": "Availability",
+      "profile": "Profile",
+      "verification": "Verification"
+    },
+    "profileStatus": "Profile status",
+    "statusText": {
+      "DRAFT": "Complete your profile and submit it for review. Until then it isn't visible in search.",
+      "PENDING": "Your profile is being reviewed. Once approved it will appear in search results.",
+      "APPROVED": "Your profile is published and accepting requests.",
+      "REJECTED": "Your profile was not approved. Fix the issues mentioned and submit again.",
+      "SUSPENDED": "Your profile is suspended and hidden. You can't accept new requests."
+    },
+    "continueOnboarding": "Continue setup",
+    "newRequests": "New requests",
+    "noNewRequests": "No new requests.",
+    "upcoming": "Upcoming bookings",
+    "noUpcoming": "No confirmed bookings.",
+    "requestsSubtitle": "Accept, decline and follow your requests.",
+    "scheduleSubtitle": "Confirmed visits by day.",
+    "scheduleEmptyText": "Visits appear here after the customer confirms.",
+    "profileSubtitle": "Material changes are sent for review again.",
+    "noProfile": "You don't have a professional profile yet"
+  },
+  "onboarding": {
+    "title": "Professional profile",
+    "subtitle": "Fill it in step by step — your draft is saved automatically.",
+    "steps": "Steps",
+    "step": {
+      "intro": "Introduction",
+      "services": "Services",
+      "experience": "Experience",
+      "area": "Service area",
+      "languages": "Languages",
+      "prices": "Prices",
+      "schedule": "Schedule",
+      "documents": "Documents",
+      "preview": "Preview"
+    },
+    "help": {
+      "intro": "How you introduce yourself to customers.",
+      "services": "Choose the category and the services you actually provide.",
+      "experience": "How many years of experience you have.",
+      "area": "Where you work. Search results are based on this.",
+      "languages": "Languages you can communicate in.",
+      "prices": "A price for each service, with a clear unit.",
+      "schedule": "Your usual working hours.",
+      "documents": "Optional: qualifications and supporting documents.",
+      "preview": "Check your details and submit for review."
+    },
+    "uploadPortrait": "Upload photo",
+    "portraitHelp": "JPG, PNG or WEBP, up to 5 MB. A natural portrait without filters.",
+    "displayName": "Name shown to customers",
+    "displayNameHelp": "Changing the name on a published profile requires another review.",
+    "headline": "Short headline",
+    "headlineHelp": "For example: \"Nanny with a teaching background\".",
+    "writingLanguage": "Language you're writing in",
+    "bio": "About you",
+    "bioHelp": "Your experience, approach and how you can help (at least 40 characters).",
+    "phoneHelp": "Customers see your phone only after confirmation. The number is not verified.",
+    "translations": "Translations (optional)",
+    "translationsHelp": "If you like, add your own translation of your text in other languages. We don't machine-translate.",
+    "category": "Category",
+    "services": "Services",
+    "requiresQualification": "Requires a verified qualification: {q}",
+    "materialChange": "Changing the category or services will send your profile for review again.",
+    "years": "Years of experience",
+    "experienceSummary": "Experience summary",
+    "experienceSummaryHelp": "Where you've worked and in what situations.",
+    "qualificationsLater": "You'll add diplomas and certificates in the Documents step.",
+    "homeLocation": "Where you live",
+    "homeLocationHelp": "Shown only at town or district level.",
+    "serviceAreas": "Service areas",
+    "serviceAreasHelp": "Choosing a whole province means you serve all towns in it.",
+    "selected": "{n} selected",
+    "selectServicesFirst": "Choose your services first.",
+    "priceKind": "Price type",
+    "priceFixed": "Fixed price",
+    "amount": "Amount (AMD)",
+    "unit": "Unit",
+    "priceHelp": "\"Negotiable\" means the price is agreed with the customer. It does not mean free.",
+    "incomplete": "Complete the missing steps",
+    "pendingNotice": "Your profile is in review. We'll let you know the decision.",
+    "approvedNotice": "Your profile is published.",
+    "rejectedTitle": "Reason",
+    "reviewNote": "Submitting does not publish your profile — our team reviews it first.",
+    "submit": "Submit for review",
+    "submitted": "Profile submitted for review",
+    "viewPublic": "View public profile"
+  },
+  "verificationPage": {
+    "subtitle": "Add qualifications and supporting documents. Each one is reviewed separately.",
+    "privacy": "Documents are stored privately and visible only to reviewing staff. Your public profile shows only the result of the check.",
+    "none": "You haven't added any qualifications yet.",
+    "add": "Add qualification",
+    "edit": "Edit qualification",
+    "kind": "Type",
+    "titleLabel": "Title",
+    "titleHelp": "For example: \"Professional nursing qualification\".",
+    "issuer": "Issuing organisation",
+    "year": "Year",
+    "upload": "Upload document",
+    "uploading": "Uploading",
+    "uploaded": "Document uploaded and sent for review",
+    "fileHint": "PDF, JPG, PNG, up to {mb} MB",
+    "rejected": "Reason",
+    "editResets": "Changing these details removes the verified label until it is reviewed again."
+  },
+  "becomePage": {
+    "title": "Become a Carely professional",
+    "lead": "Create a profile where families can see your experience, prices, schedule and verified details.",
+    "points": [
+      "You decide your services, prices and working hours.",
+      "Requests come from the areas you choose — you accept or decline them.",
+      "Customer contact details are revealed after confirmation.",
+      "Qualifications are checked individually and labelled precisely."
+    ],
+    "stepsTitle": "How to start",
+    "ctaTitle": "Ready to start?",
+    "ctaText": "It takes about 15 minutes. Your draft is saved, so you can continue later.",
+    "start": "Start your profile",
+    "noFees": "In this first version, the platform charges no fees and processes no payments."
+  },
+  "howPage": {
+    "title": "How Carely works",
+    "lead": "A simple path from request to confirmed arrangement.",
+    "customerTitle": "For families",
+    "proTitle": "For professionals",
+    "customerSteps": [
+      {
+        "title": "Search",
+        "text": "Choose a service and location; filter by price, experience, languages and verified details."
+      },
+      {
+        "title": "Send a request",
+        "text": "Choose a date or a recurring schedule and add practical details."
+      },
+      {
+        "title": "Wait for a response",
+        "text": "The professional accepts or declines. Accepting is not a booking yet."
+      },
+      {
+        "title": "Confirm",
+        "text": "After you confirm, the time is reserved and you receive contact details."
+      },
+      {
+        "title": "Leave a review",
+        "text": "After the service you can leave a review, published after moderation."
+      }
+    ],
+    "proSteps": [
+      {
+        "title": "Create a profile",
+        "text": "Introduction, services, areas, prices and schedule."
+      },
+      {
+        "title": "Add documents",
+        "text": "Optionally, an identity document and qualifications."
+      },
+      {
+        "title": "Get reviewed",
+        "text": "Our team reviews your profile and publishes it."
+      },
+      {
+        "title": "Respond to requests",
+        "text": "Accept or decline, and mark visits completed afterwards."
+      }
+    ],
+    "statusesTitle": "Request statuses",
+    "status": {
+      "SUBMITTED": "the request was sent and awaits the professional's response.",
+      "ACCEPTED": "the professional is available; the customer must confirm within the time limit.",
+      "CONFIRMED": "both sides agreed and the time is reserved.",
+      "COMPLETED": "the service was provided.",
+      "DECLINED": "the professional can't take the request.",
+      "CANCELLED": "one of the participants cancelled.",
+      "EXPIRED": "the request wasn't answered or confirmed in time."
+    }
+  },
+  "trustPage": {
+    "title": "Verification and trust",
+    "lead": "We only label what was actually checked, and we say clearly what we don't check.",
+    "identity": "The professional uploaded an identity document. A staff member compared the name and photo with the profile. The label shows the date of the check.",
+    "qualTitle": "Qualifications",
+    "qual": "Each diploma, licence or certificate is checked individually. If the professional changes the details or the document, the label is removed until it is checked again.",
+    "kinds": {
+      "NURSING_LICENSE": "required for the Nursing care service",
+      "MEDICAL_EDUCATION": "a document proving medical education",
+      "FIRST_AID": "a first-aid course certificate",
+      "PEDAGOGY": "a document proving teaching education",
+      "VETERINARY": "veterinary education or certificate"
+    },
+    "notTitle": "What we don't check or guarantee",
+    "not1": "Criminal record certificates are not checked in this first version.",
+    "not2": "Phone numbers are not verified by SMS.",
+    "not3": "Non-medical care is not medical treatment. For medical needs, consult a doctor.",
+    "not4": "Verification does not guarantee the quality or safety of a service.",
+    "tipsTitle": "Tips",
+    "tip1": "Call or meet the professional before confirming.",
+    "tip2": "Agree the terms in advance: hours, price and responsibilities.",
+    "tip3": "Don't send advance payments to people you don't know.",
+    "report": "Report a problem"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "lead": "Short answers to the main questions.",
+    "items": [
+      {
+        "q": "How much does Carely cost?",
+        "a": "In this first version the platform is free for families and professionals. You agree the price of the service directly with the professional."
+      },
+      {
+        "q": "Does sending a request mean the professional will definitely come?",
+        "a": "No. The professional must accept, and then you confirm. The time is reserved only after confirmation."
+      },
+      {
+        "q": "What does \"Identity verified\" mean?",
+        "a": "A staff member compared an identity document with the profile details. It is not a safety guarantee."
+      },
+      {
+        "q": "When will I see the professional's phone number?",
+        "a": "Contact details are revealed to both sides only after you confirm an accepted request."
+      },
+      {
+        "q": "How long do I have to confirm?",
+        "a": "An accepted request must be confirmed within the time limit (usually 48 hours), otherwise it expires."
+      },
+      {
+        "q": "Can I book recurring care?",
+        "a": "Yes. Choose Recurring, the days of the week and a period of up to 8 weeks."
+      },
+      {
+        "q": "How do I become a professional?",
+        "a": "Sign up, complete your profile and submit it for review. It's published once approved."
+      },
+      {
+        "q": "How are reviews published?",
+        "a": "Only customers with a completed request can leave a review, and every review is moderated."
+      }
+    ]
+  },
+  "aboutPage": {
+    "title": "About Carely",
+    "lead": "A platform connecting families with independent care professionals in Armenia.",
+    "p1": "Carely was created to make finding a care professional simple and transparent — for children, older people, patients and pets.",
+    "p2": "Professionals work independently. The platform helps you find each other, agree on times and follow each request.",
+    "p3": "We're honest about verification and label only what was actually checked."
+  },
+  "contactPage": {
+    "title": "Contact us",
+    "lead": "Write to us with any question. Your message is saved and reviewed by the support team.",
+    "topic": "Topic",
+    "message": "Message",
+    "messageHelp": "Please don't include medical or sensitive personal information.",
+    "submit": "Send",
+    "linkedRequest": "Your request will be attached to this message.",
+    "storedTitle": "Your message has been saved",
+    "storedText": "The support team will review it and reply to the email address you provided."
+  },
+  "legal": {
+    "draftTitle": "Draft",
+    "draftText": "This text is a preliminary draft pending review by the operator and a lawyer. It has not been legally approved.",
+    "termsTitle": "Terms of use (draft)",
+    "privacyTitle": "Privacy policy (draft)",
+    "terms": [
+      {
+        "h": "Role of the platform",
+        "p": "Carely is an information platform connecting customers with independent professionals. The platform is not a party to the arrangement between them."
+      },
+      {
+        "h": "Accounts",
+        "p": "Users are responsible for the accuracy of their details and the security of their account."
+      },
+      {
+        "h": "Requests and confirmation",
+        "p": "Sending a request does not guarantee a service. An arrangement is confirmed after the professional accepts and the customer confirms."
+      },
+      {
+        "h": "Verification",
+        "p": "Verification labels reflect only the specific check that was performed and are not a safety guarantee."
+      },
+      {
+        "h": "Reviews",
+        "p": "Reviews are published after moderation and must relate to a service that was actually provided."
+      }
+    ],
+    "privacy": [
+      {
+        "h": "What we collect",
+        "p": "Account details (name, email, phone), profile information, request details and verification documents."
+      },
+      {
+        "h": "Why",
+        "p": "To operate the platform, process requests, perform verification and provide support."
+      },
+      {
+        "h": "Who can see it",
+        "p": "Contact details are visible only to participants of a confirmed request. Verification documents only to authorised staff."
+      },
+      {
+        "h": "Storage",
+        "p": "Private documents are stored separately with no public access. Every view is logged."
+      },
+      {
+        "h": "Your rights",
+        "p": "You can ask for your data to be corrected or deleted by contacting support."
+      }
+    ]
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "text": "Please try again later.",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "The link may be wrong, or the page is no longer available.",
+    "home": "Home page"
+  },
+  "validation": {
+    "required": "Required",
+    "invalid": "Invalid value",
+    "too_long": "Too long",
+    "too_many": "Too many selected",
+    "email_invalid": "Enter a valid email address",
+    "password_min": "Password must be at least 10 characters",
+    "phone_invalid": "Enter an Armenian number, e.g. +374 91 234567",
+    "terms_required": "You need to accept the terms",
+    "select_at_least_one": "Select at least one",
+    "price_required": "Enter a price",
+    "price_min": "Price is too low",
+    "end_before_start": "End must be after start",
+    "slug_invalid": "Lowercase Latin letters, digits and hyphens only",
+    "overlap": "Times overlap",
+    "email_taken": "An account with this email already exists",
+    "password_wrong": "Incorrect password"
+  },
+  "errors": {
+    "NETWORK": "Connection problem. Check your internet and try again.",
+    "loadFailed": "Couldn't load data",
+    "VALIDATION_FAILED": "Please check the fields.",
+    "UNAUTHENTICATED": "Please sign in to continue.",
+    "FORBIDDEN": "You can't perform this action.",
+    "NOT_FOUND": "Not found.",
+    "CONFLICT": "The data has changed. Refresh the page.",
+    "RATE_LIMITED": "Too many attempts. Please wait a few minutes.",
+    "CSRF_FAILED": "Security check failed. Refresh the page.",
+    "INTERNAL": "Server error. Please try again later.",
+    "INVALID_CREDENTIALS": "Incorrect email or password.",
+    "ACCOUNT_SUSPENDED": "This account is suspended. Contact support.",
+    "EMAIL_TAKEN": "An account with this email already exists.",
+    "RESET_TOKEN_INVALID": "This link is invalid or expired. Request a new one.",
+    "INVALID_TRANSITION": "This action isn't possible in the request's current status.",
+    "REQUEST_EXPIRED": "The confirmation deadline has passed.",
+    "SCHEDULE_CONFLICT": "The professional already has a confirmed booking at that time.",
+    "PROFESSIONAL_UNAVAILABLE": "The professional is unavailable at that time.",
+    "START_IN_PAST": "The time must be in the future.",
+    "END_BEFORE_START": "End must be after start.",
+    "DURATION_TOO_LONG": "A single visit can't exceed 24 hours.",
+    "RECURRENCE_TOO_LONG": "A recurring request can cover at most {weeks} weeks.",
+    "RECURRENCE_EMPTY": "None of the chosen days fall in the chosen period.",
+    "SERVICE_NOT_OFFERED": "The professional doesn't offer this service.",
+    "LOCATION_NOT_SERVED": "The professional doesn't serve this location.",
+    "SELF_REQUEST": "You can't send a request to yourself.",
+    "TOO_EARLY_TO_COMPLETE": "The service hasn't ended yet.",
+    "REVIEW_NOT_ELIGIBLE": "You can only review a completed request.",
+    "REVIEW_EXISTS": "You've already reviewed this request.",
+    "PROFILE_INCOMPLETE": "The profile is not complete.",
+    "PROFILE_NOT_EDITABLE": "The profile is suspended and can't be edited.",
+    "FILE_TOO_LARGE": "The file is too large (max {maxMb} MB).",
+    "FILE_TYPE_NOT_ALLOWED": "This file type isn't allowed.",
+    "IN_USE": "This record is in use and can't be deleted. You can deactivate it instead.",
+    "STORAGE_NOT_CONFIGURED": "File storage is not configured.",
+    "MAIL_NOT_CONFIGURED": "Email delivery is not configured."
+  },
+  "admin": {
+    "nav": {
+      "overview": "Overview",
+      "applications": "Professionals",
+      "users": "Users",
+      "requests": "Requests",
+      "reviews": "Reviews",
+      "inquiries": "Inquiries",
+      "taxonomy": "Services",
+      "locations": "Locations",
+      "audit": "Audit log"
+    },
+    "overviewSubtitle": "Real counts from the database.",
+    "stats": {
+      "pending": "Applications awaiting review",
+      "pendingQualifications": "Documents awaiting review",
+      "pendingReviews": "Reviews awaiting moderation",
+      "openInquiries": "Open inquiries",
+      "activeRequests": "Active requests",
+      "approved": "Published professionals",
+      "suspended": "Suspended professionals",
+      "users": "Users"
+    },
+    "searchPros": "Name, email or slug",
+    "searchUsers": "Name, email or phone",
+    "searchRequests": "ID, email or professional",
+    "filterStatus": "Filter by status",
+    "col": {
+      "name": "Name",
+      "category": "Category",
+      "status": "Status",
+      "submitted": "Submitted",
+      "credentials": "Qualifications",
+      "roles": "Roles",
+      "time": "Time",
+      "actor": "Actor",
+      "action": "Action",
+      "entity": "Entity"
+    },
+    "empty": "Nothing here",
+    "registered": "registered",
+    "accountSuspended": "Account suspended",
+    "approve": "Approve and publish",
+    "reject": "Reject",
+    "suspend": "Suspend",
+    "reinstate": "Reinstate",
+    "verify": "Verify",
+    "resetToPending": "Back to review",
+    "lastReason": "Latest reason",
+    "profileContent": "Profile content",
+    "original": "original",
+    "requires": "Requires",
+    "credentials": "Qualifications and documents",
+    "credentialsHelp": "Review each qualification separately. Verify only what you actually checked.",
+    "reviewedAt": "Reviewed",
+    "noDocuments": "No document uploaded",
+    "documentAudit": "Every document view is recorded in the audit log.",
+    "internalNote": "Internal note",
+    "internalNoteHelp": "Visible to administrators only.",
+    "rejectionReason": "Reason shown to the professional",
+    "rejectionHelp": "Required when rejecting",
+    "rejectTitle": "Reject application",
+    "suspendTitle": "Suspend profile",
+    "reasonForPro": "Reason (shown to the professional)",
+    "reasonHelp": "Explain clearly what needs to change.",
+    "saved": "Saved",
+    "role": {
+      "customer": "Customer",
+      "professional": "Professional",
+      "admin": "Admin"
+    },
+    "suspendUser": "Suspend account",
+    "reinstateUser": "Reinstate account",
+    "suspendUserHelp": "The user is signed out everywhere. Their professional profile is hidden from search. Request history is kept.",
+    "internalReason": "Internal reason",
+    "requestAudit": "Viewing this request is recorded in the audit log.",
+    "reasonForParticipants": "Reason (shown to participants)",
+    "reviewsSubtitle": "Published reviews affect ratings.",
+    "publish": "Publish",
+    "linkedRequest": "Linked request",
+    "close": "Close",
+    "reopen": "Reopen",
+    "saveNote": "Save note",
+    "auditSubtitle": "Sensitive administrative actions.",
+    "taxonomySubtitle": "Categories, services and facets in three languages.",
+    "addCategory": "New category",
+    "services": "Services",
+    "attributes": "Facets (filters)",
+    "inactive": "Inactive",
+    "usedBy": "Used by {n}",
+    "locationsSubtitle": "Provinces, towns and Yerevan districts.",
+    "addRegion": "New province",
+    "tx": {
+      "name": "Name",
+      "description": "Description",
+      "slug": "Slug (URL)",
+      "slugHelp": "Latin letters, e.g. dog-walking",
+      "order": "Order",
+      "group": "Group",
+      "requiredQualification": "Required qualification",
+      "none": "Not required",
+      "active": "Active",
+      "activeHelp": "Inactive items are hidden but keep their links.",
+      "type": "Type",
+      "parent": "Province",
+      "missing": "Missing: {list}"
+    }
+  },
+  "dt": {
+    "weekdays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "weekdaysShort": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "monthsShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "dateLong": "{month} {d}, {y}",
+    "dateTime": "{month} {d}, {y}, {time}",
+    "dayMonth": "{month} {d}",
+    "in": {
+      "minutes": "in {n} minute | in {n} minutes",
+      "hours": "in {n} hour | in {n} hours",
+      "days": "in {n} day | in {n} days"
+    },
+    "ago": {
+      "minutes": "{n} minute ago | {n} minutes ago",
+      "hours": "{n} hour ago | {n} hours ago",
+      "days": "{n} day ago | {n} days ago"
+    }
+  }
+}

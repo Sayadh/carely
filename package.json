@@ -1,0 +1,29 @@
+{
+  "name": "carely",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Carely.am \u2014 care-services marketplace for Armenia",
+  "workspaces": [
+    "packages/shared",
+    "apps/api",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "build:shared": "npm run build -w @carely/shared",
+    "dev:api": "npm run dev -w @carely/api",
+    "dev:web": "npm run dev -w @carely/web",
+    "build": "npm run build:shared && npm run build -w @carely/api && npm run build -w @carely/web",
+    "typecheck": "npm run build:shared && npm run typecheck -w @carely/api && npm run typecheck -w @carely/web",
+    "test": "npm run build:shared && npm run test -w @carely/api && npm run test:i18n -w @carely/web",
+    "db:migrate:dev": "npm run db:migrate:dev -w @carely/api",
+    "db:migrate:deploy": "npm run db:migrate:deploy -w @carely/api",
+    "db:seed": "npm run db:seed -w @carely/api",
+    "db:seed:demo": "npm run db:seed:demo -w @carely/api",
+    "jobs:run": "npm run jobs:run -w @carely/api",
+    "postinstall": "npm run build:shared && npm run db:generate -w @carely/api",
+    "release:cpanel": "node scripts/release-cpanel.mjs"
+  }
+}
